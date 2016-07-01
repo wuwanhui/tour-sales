@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="app">
+<html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>门市管理后台@yield('title')</title>
+    <title>会员中心@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/js/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/css/base.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/css/page.css') }}">
@@ -16,8 +16,12 @@
         <div class="page-header-top">
             <div class="page-header-top-logo">千番旅行</div>
             <div class="page-header-top-nav">
-                <a href="{{url('/manage/userinfo')}}">  {{ Auth::user()->name }} </a> | <a
-                        href="{{url('/logout')}}">退出</a>
+                @if(Auth::guard('member')->check())
+                    <a href="{{url('/manage/userinfo')}}">  {{ Auth::guard('member')->user()->name }} </a>
+                    | <a
+                            href="{{url('/logout')}}">退出</a>@else
+                    未登录
+                @endif
             </div>
         </div>
         <div class="page-header-nav">
@@ -44,8 +48,8 @@
                 <?php if( $model === 'system'){ ?>
                 <div class="page-content-side-nav">系统管理</div>
                 <div class="page-content-side-menu">
-                    <a  href="/manage/system/enterprise/">企业管理</a>
-                    <a  href="/manage/system/user/">用户管理</a>
+                    <a href="/manage/system/enterprise/">企业管理</a>
+                    <a href="/manage/system/user/">用户管理</a>
                     <a href="/manage/system/role/">角色管理</a> <a
                             href="/manage/system/permission/">权限管理</a>
 

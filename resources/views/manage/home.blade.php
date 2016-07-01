@@ -12,7 +12,13 @@
             <div class="col-xs-4 text-right">
 
                 <form method="get" cssClass="form-horizontal">
+                    @if (Auth::guest())
+                        <a href="{{ url('manage/login') }}">登陆</a>
+                        <a href="{{ url('manage/register') }}">注册</a> </span>@else
 
+                        {{ Auth::user()->name }}  <a href="{{ url('/logout') }}" class="n2">登出</a>
+
+                    @endif
                 </form>
             </div>
         </div>

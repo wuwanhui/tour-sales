@@ -2,10 +2,6 @@
 
 use App\Http\Controllers;
 
-/**
- * 授权管理
- */
-Route::auth();
 
 /**
  * 接口相关
@@ -19,26 +15,41 @@ Route::get('api/v1/index', 'ApiController@index');
 Route::group(['prefix' => 'wechat', 'middleware' => ['weixin']], function () {
     Route::any('/', 'WechatController@index');
 });
-
 /**
  * 站点主页
  */
 Route::get('/', 'HomeController@index');
 
 
+Route::group(['middleware' => ['web']], function () {
+
+
+    /**
+     * 定制旅行
+     */
+    Route::get('/customized', 'HomeController@index');
+
+
+    /**
+     * 目的地旅行
+     */
+    Route::get('/destination', 'HomeController@index');
+
+
+});
+
+Route::auth();
+
 /**
  * 后台管理
  */
-Route::group(['prefix' => 'manage', 'middleware' => ['manage']], function () {
-
+Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
+    // Route::auth();
 
     /**
      * 主页
      */
-    Route::get('/', function () {
-        return view('manage.home');
-    });
-
+    Route::get('/', 'Manage\HomeController@index', ['model' => 'system', 'menu' => 'enterprise']);
     /**
      * 系统设置
      */
@@ -210,20 +221,24 @@ Route::group(['prefix' => 'manage', 'middleware' => ['manage']], function () {
         });
 
     });
+
+
+    Route::get('login', 'Manage\AuthController@getLogin');
+    Route::post('login', 'Manage\AuthController@postLogin');
+    Route::get('logout', 'Manage\AuthController@getLogout');
+    Route::get('register', 'Manage\AuthController@getRegister');
+    Route::post('register', 'Manage\AuthController@postRegister');
 });
 
 
 /**
  * 会员中心
  */
-Route::group(['prefix' => 'member', 'middleware' => ['manage']], function () {
-
-
+Route::group(['prefix' => 'member', 'middleware' => ['auth:member']], function () {
     /**
      * 主页
      */
-    Route::get('/', function () {
-        return view('member.home');
-    });
+    Route::get('/', 'Member\HomeController@index');
+
 
 });

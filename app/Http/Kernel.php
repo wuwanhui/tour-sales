@@ -35,7 +35,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\Authenticate::class,
             \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         ],
-        'supplier' => [
+        'member' => [
             \App\Http\Middleware\Authenticate::class,
             \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         ],

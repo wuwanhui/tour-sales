@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\System_User;
+use App\Models\Member_User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
@@ -28,7 +28,9 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/manage';
+    protected $redirectTo = '/member';
+    protected $guard = 'member';
+
 
     /**
      * Create a new authentication controller instance.
@@ -50,7 +52,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|max:255|unique:System_User',
+            'email' => 'required|max:255|unique:Member_User',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -63,7 +65,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return System_User::create([
+        return Member_User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),

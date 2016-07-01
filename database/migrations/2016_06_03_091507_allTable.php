@@ -87,6 +87,30 @@ class AllTable extends Migration
             });
         }
 
+
+        // 会员表
+        if (!Schema::hasTable('Member_User')) {
+            Schema::create('Member_User', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name')->unique();
+                $table->string('email')->nullable();
+                $table->string('password')->nullable();
+                $table->string('remember_token')->nullable();
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
+        // 会员密码重置表
+        if (!Schema::hasTable('Member_PassWord')) {
+            Schema::create('Member_PassWord', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('email')->unique();
+                $table->string('token')->nullable();
+                $table->timestamps();
+            });
+        }
+
+
         //站点导航
         if (!Schema::hasTable('Site_Navigation')) {
             Schema::create('Site_Navigation', function (Blueprint $table) {

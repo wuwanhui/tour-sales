@@ -35,7 +35,7 @@ class System_User extends Authenticatable
     public function rules()
     {
         return [
-            'name' => 'required|unique:roles|max:255|min:2',
+            'name' => 'required|unique:System_User|max:255|min:2',
             'email' => 'required',
         ];
     }

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>门市系统-@yield('title')</title>
+    <title>不二旅行@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/js/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/css/base.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/css/page.css') }}">

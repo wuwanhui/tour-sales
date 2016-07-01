@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'System_User',
+        'passwords' => 'Member_User',
     ],
 
     /*
@@ -36,6 +36,10 @@ return [
     */
 
     'guards' => [
+        'guest' => [
+            'driver' => 'session',
+           'provider' => 'System_User',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'System_User',
@@ -44,6 +48,14 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'System_User',
+        ],
+        'manage' => [
+            'driver' => 'session',
+            'provider' => 'System_User',
+        ],
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'Member_User',
         ],
     ],
 
@@ -69,11 +81,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\System_User::class,
         ],
+        'Member_User' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Member_User::class,
+        ],
 
-        // 'System_User' => [
-        //     'driver' => 'database',
-        //     'table' => 'System_User',
-        // ],
     ],
 
     /*
@@ -100,6 +112,12 @@ return [
             'provider' => 'System_User',
             'email' => 'auth.emails.password',
             'table' => 'System_PassWord',
+            'expire' => 60,
+        ],
+        'Member_User' => [
+            'provider' => 'Member_User',
+            'email' => 'auth.emails.password',
+            'table' => 'Member_PassWord',
             'expire' => 60,
         ],
     ],
