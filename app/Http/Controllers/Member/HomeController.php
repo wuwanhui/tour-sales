@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Requests;
-use Log;
 
 class HomeController extends BaseController
 {
@@ -14,8 +13,8 @@ class HomeController extends BaseController
      */
     public function __construct()
     {
+//        $this->middleware('auth');
     }
-
 
     /**
      * Show the application dashboard.
@@ -24,7 +23,6 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('member.home');
+        return view('member.home', ['model' => 'home', 'menu' => 'config']);
     }
- 
 }

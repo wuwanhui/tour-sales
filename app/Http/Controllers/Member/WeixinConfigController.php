@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Supplier;
+namespace App\Http\Controllers\Member;
 
 use App\Models\Weixin_Config;
 use Cache;

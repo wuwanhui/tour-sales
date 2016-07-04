@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Member\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member_User;
@@ -29,8 +29,10 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/member';
-    protected $guard = 'member';
 
+    protected $guard = 'member';
+    protected $loginView = 'member.auth.login';
+    protected $registerView = 'member.auth.register';
 
     /**
      * Create a new authentication controller instance.

@@ -16,8 +16,8 @@
         <div class="page-header-top">
             <div class="page-header-top-logo">千番旅行</div>
             <div class="page-header-top-nav">
-                <a href="{{url('/manage/userinfo')}}">  {{ Auth::user()->name }} </a> | <a
-                        href="{{url('/logout')}}">退出</a>
+                <a href="{{url('/manage/userinfo')}}">  {{Auth::guard('manage')->user()->name}}  </a> | <a
+                        href="{{url('manage/logout')}}">退出</a>
             </div>
         </div>
         <div class="page-header-nav">

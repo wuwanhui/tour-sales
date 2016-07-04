@@ -1,4 +1,4 @@
-@extends('layouts.manage')
+@extends('layouts.member')
 @section("script")
 
 @endsection

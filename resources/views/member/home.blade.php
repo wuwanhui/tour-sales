@@ -1,34 +1,17 @@
 @extends('layouts.member')
-@section("script")
-
-@endsection
 
 @section('content')
-    <div class="page-list">
-        <div class="row page-list-header">
-            <div class="col-xs-8 text-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Dashboard</div>
 
-            </div>
-            <div class="col-xs-4 text-right">
-
-                <form method="get" cssClass="form-horizontal">
-
-                </form>
-            </div>
-        </div>
-        <div class="row page-list-body">
-            <div class="col-md-12">
+                    <div class="panel-body">
+                        You are logged in!
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row page-list-footer">
-            <div class="col-xs-6">
-
-            </div>
-            <div class="col-xs-6 text-right">
-
-            </div>
-        </div>
-        @include('common.success')
-
     </div>
 @endsection

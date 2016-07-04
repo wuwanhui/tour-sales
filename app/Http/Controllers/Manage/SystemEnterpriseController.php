@@ -15,39 +15,39 @@ class SystemEnterpriseController extends BaseController
      * 主页
      */
 
-    public function get()
-    {
-        $enterprise = System_Enterprise::all()->first();
-        if ($enterprise == null) {
-            $enterprise = new System_Enterprise();
-        }
-        return view('manage.system.enterprise.edit', compact("enterprise"), ['model' => 'system', 'menu' => 'enterprise']);
-    }
-
-    public function post(Request $request)
+    public function index(Request $request)
     {
         try {
-            $enterprise = new System_Enterprise();
-            $input = $request->except(['id', '_token']);
-            $validator = Validator::make($input, $enterprise->rules(), $enterprise->messages());
-            if ($validator->fails()) {
-                return redirect('/manage/system/enterprise/create')
-                    ->withInput()
-                    ->withErrors($validator);
-            }
+            if ($input = $request->except(['id', '_token'])) {
 
-            $id = $request->input('id');
-            if ($id != null) {
-                DB::table('System_Enterprise')->where('id', $id)->update($input);
+                $enterprise = new System_Enterprise();
+                $input = $request->except(['id', '_token']);
+                $validator = Validator::make($input, $enterprise->rules(), $enterprise->messages());
+                if ($validator->fails()) {
+                    return redirect('/manage/system/enterprise/create')
+                        ->withInput()
+                        ->withErrors($validator);
+                }
+
+                $id = $request->input('id');
+                if ($id != null) {
+                    DB::table('System_Enterprise')->where('id', $id)->update($input);
+                } else {
+                    $enterprise->save();
+                }
+                return Redirect::back()->with('message','保存成功！');
             } else {
-                $enterprise->save();
+                $enterprise = System_Enterprise::all()->first();
+                if ($enterprise == null) {
+                    $enterprise = new System_Enterprise();
+                }
             }
-            return Redirect::back()->withInput()->with('保存成功！');
 
+            return view('manage.system.enterprise.edit', compact("enterprise"), ['model' => 'system', 'menu' => 'enterprise']);
         } catch (Exception $ex) {
             return Redirect::back()->withInput()->withErrors('保存失败！' . $ex->getMessage());
         }
-
     }
+
 
 }

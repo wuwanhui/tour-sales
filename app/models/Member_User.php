@@ -35,7 +35,7 @@ class Member_User extends Authenticatable
     public function rules()
     {
         return [
-            'name' => 'required|unique:Member_User|max:255|min:2',
+            'name' => 'required|unique:roles|max:255|min:2',
             'email' => 'required',
         ];
     }
@@ -50,6 +50,7 @@ class Member_User extends Authenticatable
         return [
             'name.required' => '用户名称为必填项',
             'email.required' => '用户邮箱为必填项',
+
         ];
     }
 

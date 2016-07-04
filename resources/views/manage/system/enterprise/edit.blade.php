@@ -27,7 +27,9 @@
                             @include('manage.system.enterprise._form')
                         </fieldset>
                     </div>
-
+                    @if(Session::get('message')!=null)
+                        {{Session::get('message')}}
+                    @endif
                 </form>
             </div>
 

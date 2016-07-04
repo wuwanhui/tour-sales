@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">管理员登录</div>
+                    <div class="panel-heading">管理员登陆</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('manage/login') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -55,7 +55,7 @@
                                         <i class="fa fa-btn fa-sign-in"></i> 登录
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ url('/password/reset') }}">找加密码？</a>
+                                    <a class="btn btn-link" href="{{ url('manage/password/reset') }}">找加密码？</a>
                                 </div>
                             </div>
                         </form>

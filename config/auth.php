@@ -44,6 +44,14 @@ return [
             'driver' => 'session',
             'provider' => 'System_User',
         ],
+        'manage' => [
+            'driver' => 'session',
+            'provider' => 'System_User',
+        ],
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'Member_User',
+        ],
 
         'api' => [
             'driver' => 'token',

@@ -16,12 +16,8 @@
         <div class="page-header-top">
             <div class="page-header-top-logo">千番旅行</div>
             <div class="page-header-top-nav">
-                @if(Auth::guard('member')->check())
-                    <a href="{{url('/manage/userinfo')}}">  {{ Auth::guard('member')->user()->name }} </a>
-                    | <a
-                            href="{{url('/logout')}}">退出</a>@else
-                    未登录
-                @endif
+                <a href="{{url('member/userinfo')}}">  {{Auth::guard('member')->user()->name}}  </a> | <a
+                        href="{{url('member/logout')}}">退出</a>
             </div>
         </div>
         <div class="page-header-nav">
@@ -48,8 +44,8 @@
                 <?php if( $model === 'system'){ ?>
                 <div class="page-content-side-nav">系统管理</div>
                 <div class="page-content-side-menu">
-                    <a href="/manage/system/enterprise/">企业管理</a>
-                    <a href="/manage/system/user/">用户管理</a>
+                    <a  href="/manage/system/enterprise/">企业管理</a>
+                    <a  href="/manage/system/user/">用户管理</a>
                     <a href="/manage/system/role/">角色管理</a> <a
                             href="/manage/system/permission/">权限管理</a>
 

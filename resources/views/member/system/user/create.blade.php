@@ -1,4 +1,4 @@
-@extends('layouts.supplier')
+@extends('layouts.member')
 @section('content')
 
     <!-- Bootstrap Boilerplate... -->

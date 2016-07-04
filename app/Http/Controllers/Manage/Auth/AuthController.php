@@ -1,11 +1,11 @@
 <?php
-namespace App\Http\Controllers\Manage;
+
+namespace App\Http\Controllers\Manage\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\System_User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Support\Facades\Input;
 use Validator;
 
 class AuthController extends Controller
@@ -30,8 +30,10 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/manage';
     protected $guard = 'manage';
-    protected $loginView = 'manage.login';
-    protected $registerView = 'manage.register';
+    protected $loginView = 'manage.auth.login';
+    protected $registerView = 'manage.auth.register';
+    protected $resetView = 'manage.auth.passwords.reset';
+
 
     /**
      * Create a new authentication controller instance.
@@ -40,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'manage/logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -71,61 +73,6 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-
-    public function getLogin()
-    {
-        return view('manage.auth.login', ['model' => 'system', 'menu' => 'role']);
-    }
-
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array $data
-     * @return User
-     */
-    public function postLogin(Request $request)
-    {
-
-    }
-
-    public function getLogout()
-    {
-        Auth::logout();
-    }
-
-    public function getRegister()
-    {
-        return view('manage.auth.register', ['model' => 'system', 'menu' => 'role']);
-    }
-
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array $data
-     * @return User
-     */
-    public function postRegister()
-    {
-        $validator = Validator::make(Input::all(), System_User::$rules);
-        if ($validator->passes()) {
-            $manage = new System_User();
-            $manage->name = Input::get('name');
-            $manage->email = Input::get('email');
-            $manage->password = bcrypt(Input::get('password'));
-            $manage->save();
-
-        } else {
-            Response::json(['message' => '注册失败'], 410);
-        }
-//        return System_User::create([
-//            'name' => $data['name'],
-//            'email' => $data['email'],
-//            'password' => bcrypt($data['password']),
-//        ]);
     }
 
 }

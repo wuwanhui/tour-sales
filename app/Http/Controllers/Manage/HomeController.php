@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Requests;
-use Log;
 
 class HomeController extends BaseController
 {
@@ -14,8 +13,8 @@ class HomeController extends BaseController
      */
     public function __construct()
     {
+  $this->middleware('auth:manage');
     }
-
 
     /**
      * Show the application dashboard.
@@ -24,8 +23,6 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('manage.home');
+        return view('manage.home', ['model' => 'home', 'menu' => 'config']);
     }
-
- 
 }
