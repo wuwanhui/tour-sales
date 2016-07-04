@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'System_User',
         ],
+        'manage' => [
+            'driver' => 'session',
+            'provider' => 'System_User',
+        ],
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'Member_User',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -68,6 +76,10 @@ return [
         'System_User' => [
             'driver' => 'eloquent',
             'model' => App\Models\System_User::class,
+        ],
+        'Member_User' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Member_User::class,
         ],
 
         // 'System_User' => [
@@ -100,6 +112,12 @@ return [
             'provider' => 'System_User',
             'email' => 'auth.emails.password',
             'table' => 'System_PassWord',
+            'expire' => 60,
+        ],
+        'Member_User' => [
+            'provider' => 'Member_User',
+            'email' => 'auth.emails.password',
+            'table' => 'Member_PassWord',
             'expire' => 60,
         ],
     ],

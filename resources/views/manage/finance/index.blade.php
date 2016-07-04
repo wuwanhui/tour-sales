@@ -1,9 +1,10 @@
-@extends('layouts.supplier')
+@extends('layouts.member')
 @section("script")
 
 @endsection
 
 @section('content')
+
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">主页</div>

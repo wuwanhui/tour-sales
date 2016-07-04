@@ -14,8 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        Log::info('Showing user profile for user: ');
-        $this->middleware('auth');
     }
 
     /**

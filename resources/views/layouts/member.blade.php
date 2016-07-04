@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="app">
+<html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>门市管理后台@yield('title')</title>
+    <title>会员中心@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/js/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/css/base.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/resources/css/page.css') }}">
@@ -16,8 +16,8 @@
         <div class="page-header-top">
             <div class="page-header-top-logo">千番旅行</div>
             <div class="page-header-top-nav">
-                <a href="{{url('/manage/userinfo')}}">  {{ Auth::user()->name }} </a> | <a
-                        href="{{url('/logout')}}">退出</a>
+                <a href="{{url('member/userinfo')}}">  {{Auth::guard('member')->user()->name}}  </a> | <a
+                        href="{{url('member/logout')}}">退出</a>
             </div>
         </div>
         <div class="page-header-nav">
